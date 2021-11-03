@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_light_gray"
+        android:longClickable="true"
+        android:orientation="vertical"
+        android:paddingTop="5dp">
+
+        <View
+            android:id="@+id/border"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0.3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/bg_blue" />
+
+        <LinearLayout
+            android:id="@+id/text_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Rio de Janeiro - 22ºC" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:src="@drawable/ic_sunny" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

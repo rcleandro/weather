@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="add_city">Adicionar cidade</string>
+    <string name="search_city">Buscar da cidade</string>
+    <string name="more_information">Mais informações</string>
+    <string name="wind_speed">Velocidade do vento:</string>
+    <string name="visibility">Visibilidade:</string>
+    <string name="humidity">Umidade:</string>
+    <string name="atmospheric_pressure">Pressão atmosférica:</string>
+    <string name="city_list">Lista de cidades</string>
+    <string name="add_text">Lista vazia!\n\nClick no botão + para adicionar cidades à sua lista</string>
+</resources>
