@@ -1,13 +1,13 @@
 package br.com.leandro.weather.data
 
-import androidx.room.ColumnInfo
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "table_city")
+@Entity
+@Parcelize
 data class City(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
-    @ColumnInfo(name = "name")
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val name: String,
-)
+) : Parcelable

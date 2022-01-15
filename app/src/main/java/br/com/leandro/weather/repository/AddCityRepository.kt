@@ -1,7 +1,6 @@
 package br.com.leandro.weather.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import br.com.leandro.weather.api.WeatherRestApiTask
 import br.com.leandro.weather.dao.CityDao
 import br.com.leandro.weather.data.City
@@ -15,7 +14,7 @@ class AddCityRepository(
         const val TAG = "AddCityRepository"
     }
 
-    private val listOfCitiesMock = mutableListOf<City>(
+    private val listOfCitiesMock = mutableListOf(
         City(0L, "São Paulo,BR"),
         City(1L, "Rio de Janeiro,BR"),
         City(2L, "Brasília,BR"),
@@ -28,9 +27,8 @@ class AddCityRepository(
         City(9L, "Goiânia,BR")
     )
 
-    private val _listCity: LiveData<List<City>> = cityDao.getAll()
-    private val listCity: LiveData<List<City>>
-        get() = _listCity
+    private val listCity: List<City>
+        get() = cityDao.getAll()
 
     private val weatherList = arrayListOf<WeatherResponse>()
 
@@ -39,16 +37,19 @@ class AddCityRepository(
     }
 
     fun getAllWeather(): List<WeatherResponse> {
-        if (listCity.value != null) {
-            for (city in listOfCitiesMock) {
-                for (item in listCity.value!!) {
-                    if (city.name != item.name) {
-                        makeRequest(city.name)
-                    }
-                }
-            }
-        } else for (city in listOfCitiesMock) makeRequest(city.name)
+        listOfCitiesMock.forEach { city ->
+            if (!checkCity(city.name))
+                makeRequest(city.name)
+        }
         return weatherList
+    }
+
+    private fun checkCity(city: String): Boolean {
+        listCity.forEach { item ->
+            if (item.name == city)
+                return true
+        }
+        return false
     }
 
     private fun makeRequest(city: String) {

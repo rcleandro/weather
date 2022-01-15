@@ -45,7 +45,6 @@ class MainViewModel(
         }.start()
     }
 
-
     fun lastUpdate() {
         val date: Date = GregorianCalendar.getInstance().time
         val formattedDate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(date.time)

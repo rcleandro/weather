@@ -1,7 +1,6 @@
 package br.com.leandro.weather.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import br.com.leandro.weather.api.WeatherRestApiTask
 import br.com.leandro.weather.dao.CityDao
 import br.com.leandro.weather.data.City
@@ -15,14 +14,14 @@ class WeatherRepository(
         const val TAG = "WeatherRepository"
     }
 
-    private val listCity: LiveData<List<City>>
+    private val listCity: List<City>
         get() = cityDao.getAll()
 
     private val weatherList = arrayListOf<WeatherResponse>()
 
     fun getAllWeather(): List<WeatherResponse> {
-        if (listCity.value != null) {
-            for (item in listCity.value!!) {
+        listCity.let {
+            for (item in listCity) {
                 val request = WeatherRestApiTask.retrofitApi().getWeather(item.name)?.execute()
                 if (request != null) {
                     if (request.isSuccessful) {
