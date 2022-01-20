@@ -37,9 +37,9 @@ class AddCityViewModel(
         }.start()
     }
 
-    fun save(newCity: String) {
+    fun save(id: Long, city: String) {
         viewModelScope.launch {
-            cityRepository.save(newCity)
+            cityRepository.save(id, city)
         }
     }
 }

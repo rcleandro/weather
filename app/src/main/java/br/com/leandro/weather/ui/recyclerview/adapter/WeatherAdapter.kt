@@ -12,11 +12,12 @@ class WeatherAdapter(private var weatherList: List<WeatherResponse>) :
     RecyclerView.Adapter<WeatherAdapter.Holder>() {
 
     lateinit var onItemClickListener: (item: WeatherResponse) -> Unit
+    lateinit var onItemLongClickListener: (item: WeatherResponse) -> Boolean
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            onItemClickListener
+            onItemClickListener, onItemLongClickListener
         )
     }
 
@@ -28,7 +29,8 @@ class WeatherAdapter(private var weatherList: List<WeatherResponse>) :
 
     class Holder(
         private val binding: ItemListBinding,
-        private val onItemClickListener: ((item: WeatherResponse) -> Unit)?
+        private val onItemClickListener: ((item: WeatherResponse) -> Unit)?,
+        private val onItemLongClickListener: ((item: WeatherResponse) -> Boolean)?
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var weather: WeatherResponse
@@ -38,6 +40,12 @@ class WeatherAdapter(private var weatherList: List<WeatherResponse>) :
             this.weather = weather
 
             binding.root.setOnClickListener { onItemClickListener?.invoke(weather) }
+
+            if (onItemLongClickListener != null) {
+                binding.root.setOnLongClickListener {
+                    onItemLongClickListener.invoke(weather)
+                }
+            }
             binding.text.text = "${weather.name} - ${weather.main.temp.toInt()}ºC"
 
             Helper.weatherImage(weather, binding.image)

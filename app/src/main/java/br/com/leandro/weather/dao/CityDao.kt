@@ -7,13 +7,13 @@ import br.com.leandro.weather.data.City
 interface CityDao {
 
     @Insert
-    suspend fun save(city: City)
+    fun save(city: City)
 
     @Delete
-    suspend fun remove(city: City)
+    fun remove(city: City)
 
     @Update
-    suspend fun update(city: City)
+    fun update(city: City)
 
     @Query("SELECT * FROM City")
     fun getAll(): List<City>

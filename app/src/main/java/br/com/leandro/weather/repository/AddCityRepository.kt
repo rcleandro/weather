@@ -32,8 +32,8 @@ class AddCityRepository(
 
     private val weatherList = arrayListOf<WeatherResponse>()
 
-    suspend fun save(newCity: String) {
-        cityDao.save(City(name = "$newCity,BR"))
+    fun save(id: Long, city: String) {
+        cityDao.save(City(id,"$city,BR"))
     }
 
     fun getAllWeather(): List<WeatherResponse> {

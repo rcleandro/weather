@@ -8,6 +8,6 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 @Parcelize
 data class City(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    @PrimaryKey(autoGenerate = false) val id: Long,
     val name: String,
 ) : Parcelable

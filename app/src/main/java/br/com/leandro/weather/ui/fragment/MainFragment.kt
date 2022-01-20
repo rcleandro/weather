@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.leandro.weather.R
+import br.com.leandro.weather.data.City
 import br.com.leandro.weather.data.WeatherResponse
 import br.com.leandro.weather.databinding.MainFragmentBinding
 import br.com.leandro.weather.ui.recyclerview.adapter.WeatherAdapter
@@ -82,6 +84,17 @@ class MainFragment : Fragment() {
         adapter.onItemClickListener = { item ->
             val direction = MainFragmentDirections.actionMainFragmentToDetailsFragment(item)
             findNavController().navigate(direction)
+        }
+        adapter.onItemLongClickListener = { item ->
+            Toast.makeText(
+                context,
+                "${item.name} foi removido da lista de cidades",
+                Toast.LENGTH_LONG
+            ).show()
+            viewModel.removeWeather(City(item.id, item.name))
+            viewModel.update()
+            refreshVisibility(true)
+            true
         }
         setStateList(list)
         binding.weatherListRecycler.adapter = adapter

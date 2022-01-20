@@ -72,7 +72,7 @@ class AddCityFragment : Fragment() {
         adapter = AddCityAdapter(list)
 
         adapter.onItemClickListener = { item ->
-            viewModel.save(item.name)
+            viewModel.save(item.id, item.name)
             Toast.makeText(
                 context,
                 "${item.name} foi adicionado à lista de cidades",

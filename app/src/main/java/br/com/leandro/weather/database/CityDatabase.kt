@@ -30,6 +30,7 @@ abstract class CityDatabase : RoomDatabase() {
                         CityDatabase::class.java,
                         CITY_DATABASE
                     ).fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
                         .build()
                     INSTANCE = instance
                 }

@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.leandro.weather.dao.CityDao
+import br.com.leandro.weather.data.City
+import br.com.leandro.weather.data.Weather
 import br.com.leandro.weather.data.WeatherResponse
 import br.com.leandro.weather.repository.WeatherRepository
 import java.text.SimpleDateFormat
@@ -43,6 +45,10 @@ class MainViewModel(
                 Log.d(TAG, exception.message.toString())
             }
         }.start()
+    }
+
+    fun removeWeather(city: City) {
+        cityDao.remove(city)
     }
 
     fun lastUpdate() {
